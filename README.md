@@ -2,12 +2,12 @@
 
 ## How to Run (Local Development)
 1. Start the project in dev mode:
-  a. npm i           // install all packeges.
-  b. npm run dev     // run in local server
+   a. npm i           // install all packages
+   b. npm run dev     // run on local server
 
 2. I've included the .env file with all sensitive credentials.
-   ⚠️ NOTE: There are not improtant for me right now, Do not misuse these credentials.
-   The project will not run without them.
+   ⚠️ NOTE: These are not important for me now, but please do NOT misuse them.
+   The project will not start without them.
 
 3. Make sure your database is connected.
    Once connected, the server will start successfully.
@@ -38,12 +38,40 @@
 - Patient
 - Doctor
 
+---
+
+## 🏗️ Application Architecture
+
+### 1. Tech Stack
+- Node.js + Express.js
+- PostgreSQL (TypeORM)
+- JWT Auth & Email Verification
+- REST APIs
+
+### 2. Core Entities
+- **User**
+  - Common entity for all roles (admin, doctor, patient)
+  - Fields: `userId`, `name`, `email`, `password`, `role`, `isVerified`, etc.
+
+- **Appointment**
+  - Each appointment is booked between a doctor and a patient
+  - Fields: `appointmentId`, `doctorId`, `patientId`, `date`, `time`, `status`, etc.
+
+### 3. Relationships
+- One `User` (with `DOCTOR` role) ⬌ can have many `Appointments` as doctor
+- One `User` (with `PATIENT` role) ⬌ can have many `Appointments` as patient
+- Appointment entity has:
+  - `@ManyToOne(() => User)` for both `doctor` and `patient`
+
+### 4. API Flow Summary
+- **Sign up → Email Verification → Login**
+- Authenticated users (via JWT) can:
+  - Book appointments
+  - View appointment list (based on role)
+    - Doctor: sees only their appointments
+    - Patient: sees only their own
+    - Admin: can see all
+
+---
+
 Thank you!
-
-
-
-
-
-
-
-
