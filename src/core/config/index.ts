@@ -19,10 +19,10 @@ export const config = () => {
 		isSynchronize: process.env.IS_SYNCHRONIZE || 'false',
 		privateKey: process.env.PRIVATEKEY,
 		expiry: process.env.EXPIRY,
-		accessKey: process.env.AWSACCESSKEY,
-		secretKey: process.env.AWSSECRETKEY,
-		region: process.env.AWSREGION,
-		bucketName: process.env.AWSBUCKETNAME
+		// accessKey: process.env.AWSACCESSKEY,
+		// secretKey: process.env.AWSSECRETKEY,
+		// region: process.env.AWSREGION,
+		// bucketName: process.env.AWSBUCKETNAME
 	};
 };
 
